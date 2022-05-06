@@ -1,8 +1,7 @@
 package com.bootcamp.retailclient.controller;
 
-import com.bootcamp.retailclient.model.ProductsReport;
-import com.bootcamp.retailclient.model.RetailClient;
-import com.bootcamp.retailclient.service.RetailClientService;
+import com.bootcamp.retailclient.model.Yanki;
+import com.bootcamp.retailclient.service.YankiService;
 import com.bootcamp.retailclient.util.Constants;
 import lombok.RequiredArgsConstructor;
 
@@ -23,39 +22,39 @@ import java.util.List;
 @RestController
 @RequestMapping("/retailclient")
 @RequiredArgsConstructor
-public class RetailClientController {
+public class YankiController {
     private final Constants constants;
-    public final RetailClientService service;
-    Logger logger = LoggerFactory.getLogger(RetailClientController.class);
+    public final YankiService service;
+    Logger logger = LoggerFactory.getLogger(YankiController.class);
 
     @GetMapping
-    public Flux<RetailClient> getAll(){
+    public Flux<Yanki> getAll(){
         logger.info("***********  Test *************");
         return service.findAll();
     }
 
     @GetMapping("/find/{document}")
-    public Flux<RetailClient> findByDocumentId(@PathVariable("document") String document){
+    public Flux<Yanki> findByDocumentId(@PathVariable("document") String document){
         return service.getByDocumentId(document);
     }
 
     @PostMapping
-    public Mono<RetailClient> create(@RequestBody RetailClient retailClient){
-        return service.create(retailClient);
+    public Mono<Yanki> create(@RequestBody Yanki yanki){
+        return service.create(yanki);
     }
 
     @PostMapping("/update")
-    public Mono<RetailClient> update(@RequestBody RetailClient retailClient){
-        return service.create(retailClient);
+    public Mono<Yanki> update(@RequestBody Yanki yanki){
+        return service.create(yanki);
     }
 
     @DeleteMapping
-    public Mono<RetailClient> delete(@RequestBody RetailClient retailClient){
-        return service.delete(retailClient);
+    public Mono<Yanki> delete(@RequestBody Yanki yanki){
+        return service.delete(yanki);
     }
 
     @DeleteMapping("/byId/{id}")
-    public Mono<RetailClient> deleteById(@RequestBody String id){
+    public Mono<Yanki> deleteById(@RequestBody String id){
         return service.deleteById(id);
     }
 
